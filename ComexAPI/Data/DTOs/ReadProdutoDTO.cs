@@ -8,4 +8,5 @@ public class ReadProdutoDTO
     public string Descricao { get; set; }
     public double PrecoUnitario { get; set; }
     public int Quantidade { get; set; }
+    public ReadCategoriaNomeDTO Categoria{ get; set; }
 }

@@ -46,7 +46,7 @@ public class ProdutoController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IEnumerable<ReadProdutoDTO> ListarProdutos()
     {
-        return _mapper.Map<List<ReadProdutoDTO>>(_produtoContext.Produtos);
+        return _mapper.Map<List<ReadProdutoDTO>>(_produtoContext.Produtos.ToList());
     }
 
     /// <summary>

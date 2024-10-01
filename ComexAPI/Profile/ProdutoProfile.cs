@@ -6,10 +6,12 @@ namespace ComexAPI.Profiles;
 
 public class ProdutoProfile : Profile
 {
-    public ProdutoProfile() 
+    public ProdutoProfile()
     {
         CreateMap<CreateProdutoDTO, Produto>();
         CreateMap<UpdateProdutoDTO, Produto>();
-        CreateMap<Produto, ReadProdutoDTO>();   
+        CreateMap<Produto, ReadProdutoDTO>()
+            .ForMember(produtoDTO => produtoDTO.Categoria,
+                       opt => opt.MapFrom(produto => produto.Categoria));
     }
 }

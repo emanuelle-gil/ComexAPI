@@ -1,11 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace ComexAPI.Data.DTOs;
 
-namespace ComexAPI.Models;
-
-public class Endereco
+public class ReadEnderecoDTO
 {
-    [Key]
-    [Required]
     public int ID { get; set; }
     public string Bairro { get; set; }
     public string Cidade { get; set; }
@@ -13,5 +9,4 @@ public class Endereco
     public string Estado { get; set; }
     public string Rua { get; set; }
     public int Numero { get; set; }
-    public virtual Cliente Cliente { get; set; }
 }

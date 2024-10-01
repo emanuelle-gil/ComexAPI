@@ -15,4 +15,5 @@ public class CreateProdutoDTO
     [Required(ErrorMessage = "A quantidade do produto é obrigatória")]
     [Range(0, int.MaxValue)]
     public int Quantidade { get; set; }
+    public int CategoriaID { get; set; }
 }

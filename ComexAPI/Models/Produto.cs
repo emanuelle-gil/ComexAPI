@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ComexAPI.Models;
 
@@ -18,4 +19,7 @@ public class Produto
     [Required(ErrorMessage = "A quantidade do produto é obrigatória")]
     [Range(0, int.MaxValue)]
     public int Quantidade { get; set; }
+    public int? CategoriaID { get; set; }
+    [JsonIgnore]
+    public virtual Categoria Categoria { get; set; }
 }
