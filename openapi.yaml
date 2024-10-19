@@ -1,0 +1,148 @@
+openapi: 3.0.3
+info: 
+  title: Comex API
+  description: A API do COMEX é uma solução construída em .NET projetada para oferecer operações completas de CRUD (criação, leitura, atualização e exclusão).
+  version: 1.0.0
+  contact:
+    name: Emanuelle Gil
+    email: manugil943@gmail.com
+    url: https://github.com/emanuelle-gil
+  license: 
+    name: "License: GPLv3"
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+externalDocs: 
+  description: Repositório do Projeto
+  url:  https://github.com/emanuelle-gil/ComexAPI
+servers: 
+- url: http://localhost:5224
+  description: Comex API
+paths: 
+  /Produto:
+    get:
+      summary:  Lista todos os produtos cadastrados.
+      responses: 
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Produto"
+    post: 
+      summary: Adiciona um produto ao banco de dados.
+      description: "Através desse endpoint você pode adicionar um produto ao banco de dados."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdutoEnvio"
+      responses:
+        201:
+          description: "Sucesso"
+  /Produto/{nome}:
+    parameters:
+      - name: nome
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      summary: Busca um produto no banco de dados pelo nome.
+      responses: 
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Produto"
+        404:
+          description: Produto não encontrado no banco de dados.
+          content:
+            application/json:
+              example: "Not Found"
+    put:
+      summary: Atualiza um produto existente no banco de dados pelo nome.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdutoEnvio"
+      responses:
+        204:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Produto"
+        400:
+          description: Dados inválidos para tentativa de atualização.
+          content:
+            application/json:
+              example: "Bad Request"
+    delete:
+      summary: Deleta um produto existente no banco de dados pelo nome.
+      responses:
+        204:
+          description: Produto deletado.
+        404:
+          description: Erro ao deletar produto.
+security:
+- auth: []
+components:
+  schemas:
+    Produto:
+      type: object
+      properties:
+        nome:
+          type: string
+        descricao:
+          type: string
+        precounitario:
+          type: number
+          format: double
+        quantidade:
+          type: integer
+        categoria:
+          type: array
+          items: 
+            type: object
+            properties:
+              id: 
+                type: integer
+              nome:
+                type: string
+    ProdutoEnvio:
+      type: object
+      properties:
+        nome:
+          type: string
+        descricao:
+          type: string
+        precoUnitario:
+          type: number
+          format: double
+        quantidade: 
+          type: integer
+        categoriaID:
+          type: integer
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      
+        
+    
+      
+
+      
+          
+                    
+            
+
+
